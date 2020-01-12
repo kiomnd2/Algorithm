@@ -7,12 +7,14 @@ public class 여행경로 {
         public static void main(String[] args) {
 
 //            String[][] arr = { { "ICN", "COO" }, { "COO", "ICN" },{ "COO", "ICN" } };
-            String[][] arr = {{ "ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
+//            String[][] arr = {{ "ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
 //            String[][] arr = {{ "ICN", "COO" }, { "COO", "ICN" },{ "COO", "ICN" }};
-//            String[][] arr = {{"ICN", "COO"}, {"COO", "ICN"}, {"COO", "ICN"}};
-//            String[][] arr = {{"ICN", "COO"}, {"ICN", "BOO"}, {"ICN", "BOO"}};
-//            String[][] arr = {{"ICN", "BOO"},{"BOO", "ICN"}};
-
+//            String[][] arr = { { "ICN", "COO" }, { "COO", "ICN" },{ "COO", "BCN" } };
+//            String[][] arr = {{"ICN", "COO"}, {"ICN", "BOO"}, {"ICN", "AOO"}};
+//            String[][] arr = {{"ICN", "COO"}, {"ICN", "COO"}, {"ICN", "AOO"}};
+//            String[][] arr = {{"ICN", "BOO"},{"BOO", "ICN"},{"BOO", "BCN"}};
+            String[][] arr = { { "ICN", "BOO" }, { "ICN", "COO" }, { "COO", "DOO" }, { "DOO", "COO" }, { "BOO", "DOO" },{ "DOO", "BOO" }, { "BOO", "ICN" }, { "COO", "BOO" } };
+//
             String[] rslt = solution(arr);
             for(int i =0; i< rslt.length; i++)
             {
@@ -25,13 +27,8 @@ public class 여행경로 {
     public static String[] solution(String[][] tickets)
     {
         String[] answer;
-        Boolean[] visited = new Boolean[tickets.length];
+        boolean[] visited = new boolean[tickets.length];
         ArrayList<String> result = new ArrayList<>();
-
-        for(int i =0 ; i < visited.length ; i++)
-        {
-            visited[i] = false ;
-        }
 
         for(int i =0; i < tickets.length; i++)
         {
@@ -40,9 +37,9 @@ public class 여행경로 {
             {
                 ArrayList<String> tempArr = new ArrayList<>();
                 tempArr.add("ICN");
-                Boolean[] copyofVisited = Arrays.copyOf(visited, visited.length);
-                copyofVisited[i] = true;
-                recursive(tickets ,copyofVisited ,i ,tempArr, result);
+                visited[i] = true;
+                recursive(tickets ,visited ,i ,tempArr, result);
+                visited[i] = false;
             }
         }
 
@@ -64,7 +61,7 @@ public class 여행경로 {
         return answer;
     }
 
-    public static void recursive(String[][] tickets, Boolean[] visited, int n, ArrayList<String> visitedNode, ArrayList<String> result)
+    public static void recursive(String[][] tickets, boolean[] visited, int n, ArrayList<String> visitedNode, ArrayList<String> result)
     {
         //다음 목적지에 해당하는 배열을 찾음
         String dest = tickets[n][1];
@@ -76,11 +73,14 @@ public class 여행경로 {
             {
                 //방문으로 바꾸고
                 visited[i] = true;
-                recursive(tickets, Arrays.copyOf(visited, visited.length), i, new ArrayList<>(visitedNode), result);
+
+                recursive(tickets,Arrays.copyOf(visited,visited.length) , i, new ArrayList<>(visitedNode), result);
+
             }
         }
 
 
+        System.out.println(visitedNode);
         //기존에 결과가 있을때 ..
         if(result.size() != 0 )
         {
@@ -92,16 +92,28 @@ public class 여행경로 {
             }
             else if( visitedNode.size() == result.size() )//작은건 볼 필요도 없고 같을경우만 봄
             {
+                System.out.println("################");
+                System.out.println("visited: "+visitedNode);
+                System.out.println("result : "+result);
+
                 //한자한자 비교해보자
                 for(int i =0; i< visitedNode.size() ; i++)
                 {
+
                     String curNode = visitedNode.get(i);
                     String preNode= result.get(i);
                     //같지 않을때가 크기 가르기 포인트다
-                    if(!curNode.equals( preNode) && curNode.compareTo(preNode)> 0 )
+                    if(!curNode.equals( preNode) && curNode.compareTo(preNode) < 0 )
                     {
+                        System.out.println(curNode);
+                        System.out.println(preNode);
                         result.clear();
                         result.addAll(visitedNode);
+                        break;
+                    }
+                    else if(!curNode.equals( preNode) && curNode.compareTo(preNode) > 0 )
+                    {
+                        break;
                     }
                 }
             }
