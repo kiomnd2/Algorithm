@@ -2,12 +2,14 @@ package programmers.level2;
 
 public class 나라의숫자 {
     public static void main(String[] args) {
-        System.out.println(solution(10));
+        System.out.println(solution(27));
 
     }
 
     public static String solution(int n) {
         String answer="";
+
+
 
         //1	1	 || 6	14
         //2	2	 || 7	21
@@ -17,9 +19,8 @@ public class 나라의숫자 {
 
         while(n != 0 )
         {
-
             // 3으로 나누어 떨어지는경우
-            if( n %3 ==0)
+            if( n %3 == 0)
             {
                 //앞에서 부터 4 가들어감
                 answer = "4".concat(answer);
@@ -32,9 +33,6 @@ public class 나라의숫자 {
             }
             // 3으로 나누어 떨어지지 않는경우
         }
-
-
-
         return answer;
     }
 
