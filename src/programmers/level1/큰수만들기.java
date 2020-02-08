@@ -1,4 +1,4 @@
-package programmers.level1;
+package level1;
 
 public class 큰수만들기 {
 
