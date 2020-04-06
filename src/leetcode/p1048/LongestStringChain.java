@@ -13,6 +13,7 @@ public class LongestStringChain {
     {
         Map<String, Integer> dp = new HashMap<>();
         Arrays.sort(words, (a, b)->a.length() - b.length());
+
         int answer = 0;
         for (String word : words)
         {
@@ -27,6 +28,5 @@ public class LongestStringChain {
         }
         return answer;
     }
-
 
 }
