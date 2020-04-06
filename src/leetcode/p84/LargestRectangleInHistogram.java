@@ -32,7 +32,7 @@ public class LargestRectangleInHistogram {
                     col++;
 
                     curMax = col* height;
-                    System.out.println("col = " +col + " height = "+ height +" ans = " + curMax);
+                    //System.out.println("col = " +col + " height = "+ height +" ans = " + curMax);
                 }
                 else
                 {
