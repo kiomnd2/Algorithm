@@ -16,10 +16,13 @@ public class TopKFrequentWords {
         List<String> ans = new ArrayList<>();
         PriorityQueue<WordQueue> pq = new PriorityQueue<>();
 
-        for (String word : words) {
-            if (r.containsKey(word)) {
+        for (String word : words)
+        {
+            if (r.containsKey(word))
+            {
                 r.replace(word, r.get(word) + 1);
-            } else {
+            }
+            else {
                 r.put(word, 1);
             }
         }
@@ -36,8 +39,8 @@ public class TopKFrequentWords {
         }
         return ans;
     }
-
 }
+
 class WordQueue implements Comparable<WordQueue> {
     String word ;
     int count ;
