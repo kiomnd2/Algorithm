@@ -1,14 +1,20 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+//        Scanner scanner = new Scanner(System.in);
+        BufferedReader br=  new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
         int[] minusArr = new int[10000000];
         int[] plusArr = new int[10000000];
 
-        for (int i=0 ; i< N ; i++) {
-            int num = scanner.nextInt();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        for (int i=0 ; i<N ; i++) {
+            int num = Integer.parseInt(st.nextToken());
             if (num < 0) {
                 minusArr[-num] = 1;
             } else {
@@ -16,10 +22,13 @@ public class Main {
             }
         }
 
-        int M = scanner.nextInt();
+        int M = Integer.parseInt(br.readLine());
+
+        st = new StringTokenizer(br.readLine());
+
         int[] resultArr = new int[M];
         for (int i=0 ; i < M ; i++) {
-            int _num = scanner.nextInt();
+            int _num = Integer.parseInt(st.nextToken());
             if (_num < 0) {
                 int i1 = minusArr[-_num];
                 resultArr[i] = i1;
@@ -28,12 +37,13 @@ public class Main {
                 resultArr[i] = i1;
             }
         }
+        StringBuffer sb = new StringBuffer();
         for (int i=0 ; i<resultArr.length ; i++) {
-            if (i == resultArr.length-1) {
-                System.out.print(resultArr[i]);
-            } else {
-                System.out.print(resultArr[i] + " ");
-            }
+            sb.append(resultArr[i]).append(" ");
         }
+
+        System.out.println(sb);
+
+
     }
 }
