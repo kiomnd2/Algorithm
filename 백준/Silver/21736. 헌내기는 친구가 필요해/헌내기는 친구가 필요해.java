@@ -24,9 +24,11 @@ public class Main {
                 if ('I' == v) {
                     doX = i;
                     doY = j;
+                    visit[doX][doY] = true;
                 }
             }
         }
+
         dfs(campus, visit, doX, doY);
         if (result > 0) {
             System.out.print(result);
@@ -36,7 +38,6 @@ public class Main {
     }
 
     public static void dfs(char[][] campus, boolean[][] visit, int x, int y) {
-        visit[x][y] = true;
         if (campus[x][y] == 'P') {
             result++;
         }
@@ -53,10 +54,11 @@ public class Main {
             if (curX >= 0 && curY >= 0
                     && curX < campus.length
                     && curY < campus[0].length
-                    && campus[curX][curY] != 'X' && !visit[curX][curY]) {
+                    && campus[curX][curY] != 'X'
+                    && !visit[curX][curY]) {
+                visit[curX][curY] = true;
                 dfs(campus, visit, curX, curY);
             }
-
         }
     }
 }
