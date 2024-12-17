@@ -3,11 +3,6 @@ package level1.stack;
 import java.util.Stack;
 
 public class 올바른괄호 {
-    public static void main(String[] args) {
-
-        System.out.println(new 올바른괄호().solution("(())()"));
-    }
-
     public boolean solution(String s) {
         boolean answer = false;
 

@@ -1,7 +1,7 @@
 import java.util.*;
 
-class Solution {
- public int[] solution(int[] answers) {
+public class 모의고사 {
+    public int[] solution(int[] answers) {
         int[] answer = {};
 
         int[] m1 = new int[]{1,2,3,4,5,1,2,3,4,5};
@@ -14,9 +14,6 @@ class Solution {
         map.put(2, 0);
         map.put(3, 0);
 
-        int m1c = 0;
-        int m2c = 0;
-        int m3c = 0;
         for (int i=0 ; i < answers.length ; i++) {
             int i1 = m1[i % m1.length];
             int i2 = m2[i % m2.length];
