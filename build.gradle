@@ -7,7 +7,7 @@ plugins {
 allprojects {
     apply plugin: 'java-library'
 
-    group = 'com.subprj'
+    group = 'algorithm'
     version = '1.0'
     sourceCompatibility = '17'
 
@@ -15,22 +15,4 @@ allprojects {
         mavenCentral()
     }
 
-}
-
-subprojects {
-    dependencies {
-
-    }
-
-    configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
-        }
-    }
-
-
-}
-
-test {
-    useJUnitPlatform()
 }
