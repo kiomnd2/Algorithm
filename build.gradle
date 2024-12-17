@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+
+allprojects {
+    apply plugin: 'java-library'
+
+    group = 'com.subprj'
+    version = '1.0'
+    sourceCompatibility = '17'
+
+    repositories {
+        mavenCentral()
+    }
+
+}
+
+subprojects {
+    dependencies {
+
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
