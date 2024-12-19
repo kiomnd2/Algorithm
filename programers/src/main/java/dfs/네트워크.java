@@ -1,4 +1,4 @@
-package level1.dfs;
+package dfs;
 
 public class 네트워크 {
 

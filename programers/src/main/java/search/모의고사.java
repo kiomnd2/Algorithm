@@ -1,4 +1,4 @@
-package level1.search;
+package search;
 
 import java.util.*;
 

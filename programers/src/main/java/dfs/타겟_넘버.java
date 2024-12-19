@@ -1,4 +1,4 @@
-package level1.dfs;
+package dfs;
 
 
 public class 타겟_넘버 {

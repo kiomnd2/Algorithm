@@ -1,4 +1,4 @@
-package level1.stack;
+package stack;
 
 import java.util.Stack;
 
