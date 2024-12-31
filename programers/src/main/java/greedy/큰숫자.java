@@ -4,41 +4,25 @@ public class 큰숫자 {
 
     public String solution(String number, int k) {
         char[] numberArr = number.toCharArray();
+        char[] ansArr = new char[number.length() - k];
 
-        int ejectCnt=0;
-
-        for (int i=1; i<numberArr.length; i++) {
-            int cnj = 1;
-            if (numberArr[i] == 'X') {
-                continue;
+        int ansCnt=0 ;
+        int curIdx = 0;
+        while(ansCnt != number.length() - k) {
+            int max = -1;
+            int window = k + ansCnt + 1;
+            int tmpIdx = 0;
+            for (int i=curIdx ; i< window; i++) {
+                if (numberArr[i]-'0' > max) {
+                    max = numberArr[i] - '0';
+                    tmpIdx = i;
+                }
             }
-
-            // X 의 갯수 지나침
-            while (i-cnj > 0 && numberArr[i] == 'X') {
-                cnj++;
-            }
-
-            if (numberArr[i-cnj] != 'X' && numberArr[i-cnj] < numberArr[i]) {
-                numberArr[i-cnj] = 'X';
-            } else if (i+1 < numberArr.length && numberArr[i+1] < numberArr[i]) {
-                numberArr[i+1] = 'X';
-            } else {
-                numberArr[i] = 'X';
-            }
-            ejectCnt++;
-
-            if (ejectCnt == k) break;
+            curIdx = tmpIdx + 1;
+            ansArr[ansCnt++] = (char)(max +'0');
         }
 
-        char[] ansChar = new char[numberArr.length-k];
-        int kIdx = 0;
-        for (char c: numberArr) {
-            if (c == 'X') {
-                continue;
-            }
-            ansChar[kIdx++] = c;
-        }
 
-        return new String(ansChar);
+        return new String(ansArr);
     }
 }
