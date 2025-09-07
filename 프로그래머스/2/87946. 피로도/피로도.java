@@ -7,6 +7,7 @@ class Solution {
             int consume = dungeon[1];
             boolean[] visit = new boolean[dungeons.length];
 
+            // 80
             if (minFigure <= k) {
                 visit[i] = true;
                 dfs(dungeons, visit, 1, k-consume);
